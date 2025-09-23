@@ -1,4 +1,4 @@
-name: Deploy Ecommerce Fullstack App on EC2
+name: Deploy portfolio Fullstack App on EC2
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: List repo files
         run: ls -R
 
-      # Step 3: Copy files to EC2 inside ~/ecommercefullstack
+      # Step 3: Copy files to EC2 inside ~/portfoliofullstack
       - name: Copy repo to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -27,7 +27,7 @@ jobs:
           username: ubuntu   # or ubuntu if Ubuntu server
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "./*"
-          target: /home/ubuntu/ecommercefullstack
+          target: /home/ubuntu/portfoliofullstack
  
 
       # Step 4: SSH into EC2 and deploy with Docker Compose
@@ -41,7 +41,7 @@ jobs:
           debug: true
           script: |
             
-            cd ~/ecommercefullstack
+            cd ~/portfoliofullstack
 
             # Install Git if missing
             if ! command -v git &> /dev/null; then
